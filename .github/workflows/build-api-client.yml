@@ -3,7 +3,12 @@ name: Build and Test
 on:
   pull_request:
     paths:
+      - .github/workflows/build-api-client.yml
       - api-client/**
+      - console/**
+      - package.json
+      - pnpm-lock.yaml
+      - pnpm-workspace.yaml
   workflow_call:
 
 permissions:
