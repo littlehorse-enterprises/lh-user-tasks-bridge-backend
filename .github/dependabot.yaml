@@ -1,10 +1,6 @@
 version: 2
 updates:
   - package-ecosystem: npm
-    directory: "/console"
-    schedule:
-      interval: "monthly"
-  - package-ecosystem: npm
-    directory: "/api-client"
+    directory: "/"
     schedule:
       interval: "monthly"
