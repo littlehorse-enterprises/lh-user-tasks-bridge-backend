@@ -7,11 +7,11 @@ import { registerInstrumentations } from "@opentelemetry/instrumentation";
 import { HttpInstrumentation } from "@opentelemetry/instrumentation-http";
 import { RuntimeNodeInstrumentation } from "@opentelemetry/instrumentation-runtime-node";
 import {
-  detectResourcesSync,
+  detectResources,
   envDetector,
   hostDetector,
   processDetector,
-  Resource,
+  resourceFromAttributes,
 } from "@opentelemetry/resources";
 import { MeterProvider } from "@opentelemetry/sdk-metrics";
 import {
@@ -28,11 +28,11 @@ const exporter = new PrometheusExporter({
     ? parseInt(process.env.LHUT_METRICS_PORT)
     : 9464,
 });
-const detectedResources = detectResourcesSync({
+const detectedResources = detectResources({
   detectors: [envDetector, processDetector, hostDetector],
 });
 
-const customResources = new Resource({
+const customResources = resourceFromAttributes({
   [ATTR_SERVICE_NAME]: "UserTasks Bridge Console",
   [ATTR_SERVICE_VERSION]: "0.1.0",
 });
